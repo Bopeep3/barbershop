@@ -1,5 +1,3 @@
-// components/BookingForm.js
-
 import React, { useState, useEffect } from 'react';
 import { services } from '../serviceData';
 import { TextField, MenuItem, Button, CircularProgress } from '@mui/material';
@@ -23,7 +21,6 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
     });
     const [isBooking, setIsBooking] = useState(false);
 
-    // Effect to update state when userDetails changes
     useEffect(() => {
         setName(userDetails.name || userDetails.username);
     }, [userDetails]);
@@ -47,8 +44,7 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
             isValid = false;
         }
 
-        // Basic validation for phone number
-        const phoneRegex = /^[0-9]{10}$/; // Adjust the regex according to your needs
+        const phoneRegex = /^[0-9]{10}$/;
         if (!phoneNumber) {
             tempErrors.phoneNumber = 'Phone number is required.';
             isValid = false;
@@ -65,23 +61,22 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
         e.preventDefault();
         if (!validateForm()) return;
 
-        setIsBooking(true); // Start loading
+        setIsBooking(true);
 
         const appointmentDetails = {
             name,
             phoneNumber,
             service,
             appointmentDate,
-            email: userDetails.email, // Include the email in your appointment details
+            email: userDetails.email,
         };
 
         try {
             await bookAppointment(appointmentDetails);
             handleOpenSnackbar('Appointment booked successfully!');
 
-            onBookingSuccess(); // Add this line. You need to pass this prop from App.js
+            onBookingSuccess(); 
 
-            // Reset form fields
             setService('');
             setAppointmentDate(defaultAppointmentDate);
             setPhoneNumber('');
@@ -89,7 +84,7 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
             console.error('Booking failed:', error);
             handleOpenSnackbar('Failed to book the appointment. Please try again.');
         } finally {
-            setIsBooking(false); // Stop loading regardless of the outcome
+            setIsBooking(false);
         }
     };
 
@@ -114,7 +109,7 @@ const BookingForm = ({ userDetails, handleOpenSnackbar, onBookingSuccess }) => {
                 fullWidth
                 margin="normal"
                 variant="outlined"
-                type="tel" // Suggests to browsers that this input should be treated as a telephone number
+                type="tel" 
             />
             <TextField
                 select

@@ -3,10 +3,10 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#009688', // Teal as the primary color
+      main: '#0088e0', 
     },
     secondary: {
-      main: '#1a237e', // Navy blue as the secondary color
+      main: '#fbf3ef',
     },
   },
   typography: {
@@ -19,7 +19,7 @@ const theme = createTheme({
       fontWeight: 500,
     },
     button: {
-      textTransform: 'none', // More natural button text
+      textTransform: 'none', 
     },
   },
 });

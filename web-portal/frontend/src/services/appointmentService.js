@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// Replace `APPOINTMENT_SERVICE_URL` with the actual URL of your appointments service
 const APPOINTMENT_SERVICE_URL = window.configs.apiUrl;
 
 export const bookAppointment = async (appointmentDetails) => {
@@ -31,12 +30,12 @@ export const getUpcomingAppointments = async (email) => {
     const response = await axios.get(`${APPOINTMENT_SERVICE_URL}/appointments`, {
       params: {
         email: email,
-        upcoming: 'true', // Assuming your backend supports this query parameter for filtering upcoming appointments
+        upcoming: 'true', 
       }
     });
     return response.data;
   } catch (error) {
     console.error('Error fetching upcoming appointments:', error);
-    throw error; // Rethrowing the error so it can be caught and handled in the component
+    throw error;
   }
 };

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Box, CssBaseline, AppBar, Toolbar, IconButton, Snackbar, Divider } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp'; // For logout icon
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import CloseIcon from '@mui/icons-material/Close';
 import { ThemeProvider } from '@mui/material/styles';
 import Cookies from 'js-cookie';
 import theme from './theme';
 import LoginPage from './LoginPage';
 import BookingForm from './components/BookingForm';
-import ProtectedRoute from './ProtectedRoute'; // Import your ProtectedRoute component
+import ProtectedRoute from './ProtectedRoute'; 
 import UpcomingAppointments from './components/UpcomingAppointments';
 
 function App() {
@@ -24,7 +24,6 @@ function App() {
   useEffect(() => {
     let isUserInfoSet = false;
     if (process.env.REACT_APP_ENV === 'development') {
-      // Mock the authentication flow
       const mockUserInfo = { username: 'testuser', name: 'Test User' };
       localStorage.setItem('userDetails', JSON.stringify(mockUserInfo));
       isUserInfoSet = true;
@@ -48,7 +47,7 @@ function App() {
       }
     }
 
-    setLoading(false); // Set loading to false after authentication check is complete
+    setLoading(false);
   }, []);
 
   const triggerAppointmentsRefresh = () => {
@@ -56,12 +55,10 @@ function App() {
   };
 
   const handleLogout = () => {
-    // Clear any stored user information
     setUserDetails({});
     setLoggedIn(false);
     localStorage.removeItem('userDetails');
 
-    // Redirect to Choreo logout with session_hint
     const sessionHint = Cookies.get('session_hint');
     window.location.href = `/auth/logout?session_hint=${sessionHint}`;
 
@@ -81,7 +78,7 @@ function App() {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Or a more sophisticated loading indicator
+    return <div>Loading...</div>;
   }
 
   return (
@@ -91,7 +88,7 @@ function App() {
           <AppBar position="static" color="primary">
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                CareConnect - Your Gateway to Health and Wellness
+                HairCare - The Best Cuts in Town
               </Typography>
               {loggedIn && (
                 <IconButton color="inherit" onClick={handleLogout}>

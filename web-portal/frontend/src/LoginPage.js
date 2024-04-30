@@ -1,7 +1,6 @@
-// LoginPage.js
 import React from 'react';
 import { Button, Typography, Box, Paper, Container } from '@mui/material';
-import backgroundImage from './login-background.webp'; // Ensure this path is correct
+import backgroundImage from './login-background.jpg';
 
 const LoginPage = () => {
     return (
@@ -21,11 +20,12 @@ const LoginPage = () => {
                 <Paper
                     elevation={3}
                     sx={{
-                        padding: 4,
+                        padding: 5,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+                        justifyContent: 'flex-end',
                     }}
                 >
                     <Typography variant="h4" component="h1" gutterBottom sx={{ textAlign: 'center' }}>

@@ -5,10 +5,9 @@ import { List, ListItem, ListItemText, Typography, Paper, Avatar, ListItemAvatar
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { format } from 'date-fns';
 
-// Convert service values to labels for display
 const getServiceLabel = (serviceValue) => {
     const service = services.find(s => s.value === serviceValue);
-    return service ? service.label : serviceValue; // Fallback to the value if not found
+    return service ? service.label : serviceValue;
 };
 
 const UpcomingAppointments = ({ email, triggerRefresh }) => {
@@ -32,7 +31,7 @@ const UpcomingAppointments = ({ email, triggerRefresh }) => {
     if (appointments.length === 0) {
         return (
             <Typography variant="subtitle1" style={{ marginTop: 20, textAlign: 'center' }}>
-                No upcoming appointments. Take a moment to book one!
+                No Booked Appointments.
             </Typography>
         );
     }

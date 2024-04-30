@@ -19,11 +19,10 @@ async function getAccessToken() {
         return accessToken;
     } catch (error) {
         console.error('Error obtaining access token:', error);
-        throw error; // Rethrow the error to handle it in the calling context
+        throw error;
     }
 }
 
-// Endpoint to get appointments, filtering by email
 app.get('/appointments', async (req, res) => {
     try {
         const email = req.query.email;
@@ -31,7 +30,7 @@ app.get('/appointments', async (req, res) => {
             return res.status(400).send('Email query parameter is required');
         }
 
-        const accessToken = await getAccessToken(); // Use the new function
+        const accessToken = await getAccessToken();
 
         const appointmentServiceUrl = process.env.APPOINTMENT_SERVICE_URL;
         const response = await axios.get(`${appointmentServiceUrl}/appointments?email=${email}`, {
@@ -49,8 +48,7 @@ app.get('/appointments', async (req, res) => {
 
 app.post('/create-appointment', async (req, res) => {
     try {
-        // Retrieve authentication details from environment variables
-        const accessToken = await getAccessToken(); // Use the new function here too
+        const accessToken = await getAccessToken(); 
 
         const appointmentServiceUrl = process.env.APPOINTMENT_SERVICE_URL;
         if (!appointmentServiceUrl) {
@@ -63,7 +61,6 @@ app.post('/create-appointment', async (req, res) => {
             },
         });
 
-        // Respond to the client with the Appointment service's response
         res.status(response.status).send(response.data);
     } catch (error) {
         console.error('Error forwarding appointment creation request:', error);

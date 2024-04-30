@@ -3,14 +3,13 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const express = require('express');
 const bodyParser = require('body-parser');
-const Appointment = require('./appointmentModel'); // Import the model
+const Appointment = require('./appointmentModel');
 
 const app = express();
-const port = 8090; // You can choose any port that is free
+const port = 8090; 
 
 app.use(bodyParser.json());
 
-// Sync Sequelize models
 Appointment.sequelize.sync().then(() => {
     console.log(`Database & tables created!`);
 });
@@ -31,14 +30,13 @@ app.get('/appointments', async (req, res) => {
             };
         }
 
-        // Filter by email address if provided
         if (email) {
             whereCondition.email = email; 
         }
 
         const appointments = await Appointment.findAll({
             where: whereCondition,
-            order: [['appointmentDate', 'ASC']], // Optionally, order by date
+            order: [['appointmentDate', 'ASC']], 
         });
 
         res.status(200).send(appointments);
@@ -65,7 +63,6 @@ app.get('/appointments/:id', async (req, res) => {
     }
 });
 
-// Booking endpoint
 app.post('/appointments', async (req, res) => {
     try {
         const { name, service, phoneNumber, email, appointmentDate } = req.body;

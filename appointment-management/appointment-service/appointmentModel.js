@@ -26,7 +26,6 @@ const Appointment = sequelize.define('Appointment', {
     allowNull: false,
   },
 }, {
-  // Other model options go here
 });
 
 module.exports = Appointment;
